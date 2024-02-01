@@ -1,16 +1,9 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from keras.preprocessing import image
-from PIL import Image
-from random import sample
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input as resnet_preprocess
-from tensorflow.keras.models import Model
-from pathlib import Path
-Image.LOAD_TRUNCATED_IMAGES = True
-import requests
-from io import BytesIO
-import os
-import streamlit as st
-import pickle
+pandas==1.5.3
+numpy==1.24.3
+matplotlib==3.7.1
+keras==2.15.0
+tensorflow==2.15.0
+streamlit==1.30.0
+pathlib==1.0.1
+Pillow==9.4.0
+requests==2.31.0
