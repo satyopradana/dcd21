@@ -91,8 +91,11 @@ elif opt == "About Model":
     )
     st.write(
     """
-    Pada project ini dibuatlah model berupa Image Similarity dimana inputan image akan di proses menggunakan  Neural Network.
-    Kemudian image diproses dengan menyesuaikan pixel pada image yang berada pada dataset
+    Project ini dirancang dengan model berupa Image Similarity dimana inputan image akan di proses menggunakan  Neural Network.
+    Kemudian image diproses dengan menyesuaikan pixel pada image yang berada pada dataset, machine akan mendeteksi pixel dan
+    warna yang memiliki nilai yang sama dengan image inputan, dengan begitu hasil output akan menyesuaikan dengan hasil dari nilai inputan.
+    Pada project ini inputan image berupa file directory/ file dari internal data dan berupa link URL,
+    sehingga user dapat dengan mudah untuk menjalankan model ini.
     """,
     unsafe_allow_html=True
     )
