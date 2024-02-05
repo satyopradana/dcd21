@@ -15,8 +15,7 @@ from io import BytesIO
 import os
 import streamlit as st
 import pickle
-from skimage import io
-from skimage import transform
+
 
 
 
@@ -32,34 +31,6 @@ def display_image(image_path):
 #image_path = (r"C:\Users\SATYO\Documents\GitHub\dcd21\model-img\model")
 #image = display_image(image_path)
 
-
-def list_files(directory):
-    return [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
-
-def main():
-    st.title("Folder Contents Viewer")
-
-    # Specify the folder path you want to display
-    folder_path = st.text_input("Enter folder path:", ".")
-
-    if not os.path.exists(folder_path):
-        st.error("Folder does not exist. Please enter a valid folder path.")
-        return
-
-    st.write(f"Listing files in folder: {folder_path}")
-
-    files = list_files(folder_path)
-
-    if not files:
-        st.write("No files found in the folder.")
-    else:
-        st.write("Files in the folder:")
-        for file in files:
-            st.write(f"- {file}")
-
-if __name__ == "__main__":
-    main()
-
 #st.code(model)
 
 #st.image(model)
@@ -70,11 +41,13 @@ if __name__ == "__main__":
 st.title("Image Similarity For E-Commerce")
 st.subheader("Image Search")
 st.markdown("---")
-input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
+
 opt = st.sidebar.radio("Dashboard Sidebar",options=["Background","About Model","Input File", "URL Input","Biography"])
 #input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
-url = st.text_input('The URL link')
 
+input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
+
+url = st.text_input('The URL link')
 if opt == "Background":
     st.write("""### Background ###""")
     
@@ -169,9 +142,11 @@ elif opt == "Biography":
     """,
     unsafe_allow_html=True
     )
-st.image(r"C:/Users/SATYO/Music/DCD_21/PHOTO-2022-02-21-05-45-36(1).jpg")
-st.markdown("### About My Self ###")
-st.markdown("www.linkedin.com/in/satyo-pradana")
+    st.image(r"C:\Users\SATYO\Music\DCD_21\DCD\pages\PHOTO-2022-02-21-05-45-36(1).jpg")
+    st.markdown("#### My Link ####")
+    st.markdown("www.linkedin.com/in/satyo-pradana")
+    st.markdown("https://github.com/satyopradana/")
+    st.markdown("https://rpubs.com/Satyo1")
 
 
 #tab1,tab2 = st.tabs(['Input File','URL Input'])
@@ -200,7 +175,7 @@ st.markdown("www.linkedin.com/in/satyo-pradana")
 
 
 
-st.success("Done")
+#st.success("Done")
 
 
  
