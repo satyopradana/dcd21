@@ -19,7 +19,7 @@ import pickle
 
 
 
-model = pickle.load(open(r"C:\Users\SATYO\Music\DCD_21\resnet_model.pkl","rb"))
+#model = pickle.load(open(r"C:\Users\SATYO\Music\DCD_21\resnet_model.pkl","rb"))
 
 def display_image(image_path):
     img = io.imread(image_path)
