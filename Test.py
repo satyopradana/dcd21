@@ -45,10 +45,11 @@ st.markdown("---")
 opt = st.sidebar.radio("Dashboard Sidebar",options=["Background","About Model","Input File", "URL Input","Biography"])
 #input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
 
-input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
 
-url = st.text_input('The URL link')
+
+
 if opt == "Background":
+    
     st.write("""### Background ###""")
     
     st.markdown(
@@ -66,11 +67,11 @@ if opt == "Background":
     st.write(
     """
     E-Commercee menjadi sebuah wadah baru dalam melakukan transaksi jual beli,
-    dengan perkembangan teknologi yang bertumbuh secara eksponensial,
+    dengan perkembangan teknologi yang bertumbuh secara pesat,
     tidak menutup kemungkinan para pelaku usaha berlomba-lomba dalam mengembangkan inovasi produk mereka,
-    dengan hal tersebut otomatis semakin banyak juga pelabelan atau penamaan dari suatu produk yang khawatirnya para user
-    akan kebingungan dalam mencari produk tersebut, maka dari itu tercetuslah ide dalam pembuatan Image Similarity for E-Commerce dimana
-    prinsip kerjanya sama seperti search engine, dimana akan meningkatkan efektitas dan efisiensi user dalam mencari produk yang dicari.
+    dengan hal tersebut otomatis semakin banyak juga pelabelan atau penamaan produk, dimana para user
+    akan kesulitan dalam mencari keyword produk yang ingin dicari, maka dari itu ide dalam pembuatan Image Similarity for E-Commerce muncul dimana
+    prinsip kerjanya seperti layaknya search engine, dimana akan meningkatkan efektitas dan efisiensi user dalam mencari produk yang mereka cari.
     """,
     unsafe_allow_html=True
     )
@@ -91,7 +92,7 @@ elif opt == "About Model":
     )
     st.write(
     """
-    Project ini dirancang dengan model berupa Image Similarity dimana inputan image akan di proses menggunakan  Neural Network.
+    Project ini dirancang dengan model berupa Image Similarity dimana inputan image akan di proses menggunakan Neural Network.
     Kemudian image diproses dengan menyesuaikan pixel pada image yang berada pada dataset, machine akan mendeteksi pixel dan
     warna yang memiliki nilai yang sama dengan image inputan, dengan begitu hasil output akan menyesuaikan dengan hasil dari nilai inputan.
     Pada project ini inputan image berupa file directory/ file dari internal data dan berupa link URL,
@@ -102,6 +103,7 @@ elif opt == "About Model":
 
 
 elif opt == "Input File":
+    input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
     for image in input_file:
         st.image(image)
         #with st.echo():
@@ -114,6 +116,7 @@ elif opt == "Input File":
         #st.write(fig)
 
 elif opt == "URL Input":
+    url = st.text_input('The URL link')
     st.image(url)
     
 
@@ -145,6 +148,8 @@ elif opt == "Biography":
     """,
     unsafe_allow_html=True
     )
+    image_path = r'C:\Users\SATYO\Music\DCD_21\PHOTO-2022-02-21-05-45-36(1).jpg'
+    st.image(image_path, caption="Gambar dari file lokal", use_column_width=True)
     st.image(r"C:\Users\SATYO\Music\DCD_21\DCD\pages\PHOTO-2022-02-21-05-45-36(1).jpg")
     st.markdown("#### My Link ####")
     st.markdown("www.linkedin.com/in/satyo-pradana")
