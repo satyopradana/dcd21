@@ -15,18 +15,72 @@ from io import BytesIO
 import os
 import streamlit as st
 import pickle
+import tensorflow as tf
 
 
 
+model = pickle.load(open(r"C:\Users\SATYO\Music\DCD_21\resnet_model.pkl","rb"))
+#input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
+#for image in input_file:
+ #       st.image(image)
 
-#model = pickle.load(open(r"C:\Users\SATYO\Music\DCD_21\resnet_model.pkl","rb"))
+import streamlit as st
+import tensorflow as tf
+from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input, decode_predictions
 
-def display_image(image_path):
-    img = io.imread(image_path)
-    plt.imshow(img)
-    plt.axis('off')
-    plt.show()
+# Load ResNet50 model
+st.cache(allow_output_mutation=True)
+def load_model():
+    model = ResNet50(weights='imagenet')
+    return model
+
+# Function to preprocess the image
+def preprocess_image(image):
+    img = tf.image.decode_image(image.read(), channels=3)
+    img = tf.image.resize(img, (224, 224))
+    img = preprocess_input(img)
+    img = tf.expand_dims(img, axis=0)
     return img
+
+# Main function
+def main():
+    st.title("ResNet50 Image Classifier")
+    st.write("Upload an image for classification")
+
+    uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
+
+    if uploaded_file is not None:
+        # Display the uploaded image
+        image = tf.image.decode_image(uploaded_file.read(), channels=3)
+        st.image(image, caption='Uploaded Image', use_column_width=True)
+
+        # Load the model
+        model = load_model()
+
+        # Preprocess the image
+        processed_image = preprocess_image(uploaded_file)
+
+        # Make predictions
+        predictions = model.predict(processed_image)
+        decoded_predictions = decode_predictions(predictions, top=3)[0]
+
+        # Display the predictions
+        st.write("Predictions:")
+        for i, (image, label, score) in enumerate(decoded_predictions):
+            st.write(f"{i+1}: {label} ({score:.2f})")
+            
+
+if __name__ == '__main__':
+    main()
+
+
+
+#def display_image(image_path):
+#    img = io.imread(image_path)
+#    plt.imshow(img)
+ #   plt.axis('off')
+ #3   plt.show()
+  #  return img
 
 #image_path = (r"C:\Users\SATYO\Documents\GitHub\dcd21\model-img\model")
 #image = display_image(image_path)
@@ -38,11 +92,13 @@ def display_image(image_path):
 
 #st.image(display_resnet_results)
 
+
+
 st.title("Image Similarity For E-Commerce")
 st.subheader("Image Search")
 st.markdown("---")
 
-opt = st.sidebar.radio("Dashboard Sidebar",options=["Background","About Model","Input File", "URL Input","Biography"])
+opt = st.sidebar.radio("",options=["Background","About Model","Input File", "URL Input","Biography"],)
 #input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
 
 
@@ -102,10 +158,24 @@ elif opt == "About Model":
     )
 
 
+
 elif opt == "Input File":
     input_file =  st.file_uploader("input file",type=["png","jpg"],accept_multiple_files= True)
+        
     for image in input_file:
         st.image(image)
+
+    def predict(image):
+                prediction = model.predict(image)
+                prediction = predict(image=True)
+                st.write(prediction)
+                st.image(prediction)
+                st.write(predict)
+                st.image(predict)
+                st.pyplot(predict)
+                st.pyplot(prediction)
+                st.code(predict)
+    
         #with st.echo():
            # st.write(model)
         #prediction = model.predict(input_file)
@@ -114,6 +184,7 @@ elif opt == "Input File":
         #st.code(model)
         #st.code(model.predict([input_file]))
         #st.write(fig)
+
 
 elif opt == "URL Input":
     url = st.text_input('The URL link')
@@ -148,9 +219,8 @@ elif opt == "Biography":
     """,
     unsafe_allow_html=True
     )
-    image_path = r'C:\Users\SATYO\Music\DCD_21\PHOTO-2022-02-21-05-45-36(1).jpg'
-    st.image(image_path, caption="Gambar dari file lokal", use_column_width=True)
-    st.image(r"C:\Users\SATYO\Music\DCD_21\DCD\pages\PHOTO-2022-02-21-05-45-36(1).jpg")
+    
+    st.image(r"C:\Users\SATYO\Documents\GitHub\dcd21\model-img\model\10057862_316449_300.jpg")
     st.markdown("#### My Link ####")
     st.markdown("www.linkedin.com/in/satyo-pradana")
     st.markdown("https://github.com/satyopradana/")
